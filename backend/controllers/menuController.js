@@ -27,7 +27,7 @@ export const createMenuItem = async (req, res) => {
 
   let imageUrl = '';
   if (req.file) {
-    imageUrl = `/uploads/${req.file.filename}`;
+    imageUrl = req.file.path;
   }
 
   if (!imageUrl) {
@@ -68,7 +68,7 @@ export const updateMenuItem = async (req, res) => {
       }
 
       if (req.file) {
-        menuItem.imageUrl = `/uploads/${req.file.filename}`;
+        menuItem.imageUrl = req.file.path;
       }
 
       const updatedMenuItem = await menuItem.save();
