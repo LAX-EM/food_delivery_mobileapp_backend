@@ -15,6 +15,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -36,10 +37,10 @@ connectDB();
 
 // Health Check Endpoint
 app.get('/health', (req, res) => {
-  res.status(200).json({ 
-    status: 'ok', 
-    message: 'Server is healthy', 
-    timestamp: new Date() 
+  res.status(200).json({
+    status: 'ok',
+    message: 'Server is healthy',
+    timestamp: new Date()
   });
 });
 
