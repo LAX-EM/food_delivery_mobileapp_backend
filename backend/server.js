@@ -34,8 +34,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Connect to Database
 connectDB();
 
+// Health Check Endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'ok', 
+    message: 'Server is healthy', 
+    timestamp: new Date() 
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ✅ ${PORT}`);
 });
